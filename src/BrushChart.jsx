@@ -64,7 +64,7 @@ function BrushChart({ data, children }) {
         const brush = brushX()
             .extent([  [0, 0],  [width, height]  ]) // brush allowed to stretch from top-left to bottom-right
             .on("start brush end", () => {
-                if (event.selection) {
+                if (event.selection && event.selection[0] !== event.selection[1]) {
                     const indexSelection = event.selection.map(xScale.invert); // convert array of pixel values to array of idx values
                     setSelection(indexSelection);
                 }
